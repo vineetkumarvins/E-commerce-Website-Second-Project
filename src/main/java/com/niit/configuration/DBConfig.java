@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.model.User;
 import com.niit.model.Job;
+import com.niit.model.BlogPost;
 
 import java.util.Properties;
 
@@ -32,7 +33,7 @@ public class DBConfig {
 			hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
 			hibernateProperties.setProperty("hibernate.show_sql", "true");
 			lsf.addProperties(hibernateProperties);
-			Class classes[]=new Class[]{User.class, Job.class};
+			Class classes[]=new Class[]{User.class, Job.class, BlogPost.class};
 		    return lsf.addAnnotatedClasses(classes).buildSessionFactory();
 		}
 		@Bean

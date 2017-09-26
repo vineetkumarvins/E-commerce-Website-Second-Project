@@ -1,6 +1,6 @@
 package com.niit.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,19 +10,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name="blogpost_batch5")
 public class BlogPost {
 @Id
 @GeneratedValue(strategy=GenerationType.AUTO)
 private int id;
+@NotEmpty
 private String blogTitle;
-@Lob
-private String description;
+@Lob // Large object
+private String description;  //CLOB character large object.
 @ManyToOne
-@JoinColumn(name="author")
+// @JoinColumn(name="author")  // don't write this.
 private User postedBy;
 private Date postedOn;
+private boolean approved;
 public int getId() {
 	return id;
 }
@@ -53,5 +57,12 @@ public Date getPostedOn() {
 public void setPostedOn(Date postedOn) {
 	this.postedOn = postedOn;
 }
+public boolean isApproved() {
+	return approved;
+}
+public void setApproved(boolean approved) {
+	this.approved = approved;
+}
+
 
 }
